@@ -42,11 +42,4 @@ public class Item {
     public LocalDateTime getCreated() {
         return created;
     }
-
-    public static void main(String[] args) {
-        Item item1 = new Item();
-        Item item2 = new Item("Search");
-        Item item3 = new Item(1);
-        Item item4 = new Item(2, "Insert");
-    }
 }
