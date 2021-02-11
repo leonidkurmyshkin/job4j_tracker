@@ -19,10 +19,10 @@ public class TrackerTest {
     @Test
     public void whenFindByName() {
         Tracker tracker = new Tracker();
-        Item item1 = new Item(1, "Переставить");
-        Item item2 = new Item(2, "Принести");
-        Item item3 = new Item(3, "Подать");
-        Item item4 = new Item(4, "Переставить");
+        Item item1 = new Item("Переставить");
+        Item item2 = new Item("Принести");
+        Item item3 = new Item("Подать");
+        Item item4 = new Item("Переставить");
         tracker.add(item1);
         tracker.add(item2);
         tracker.add(item3);
