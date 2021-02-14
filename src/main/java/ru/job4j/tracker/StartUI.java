@@ -14,7 +14,7 @@ public class StartUI {
                     showAllItems(tracker);
                     break;
                 case 2:
-                    editItem(input, tracker);
+                    replaceItem(input, tracker);
                     break;
                 case 3:
                     deleteItem(input, tracker);
@@ -48,7 +48,7 @@ public class StartUI {
         }
     }
 
-    public static void editItem(Input input, Tracker tracker) {
+    public static void replaceItem(Input input, Tracker tracker) {
         System.out.println("=== Edit Item ====");
         int id2 = input.askInt("Enter Id: ");
         Item item2 = new Item(input.askStr("Enter new name: "));
