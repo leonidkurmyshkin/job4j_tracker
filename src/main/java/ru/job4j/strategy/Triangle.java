@@ -6,6 +6,6 @@ public class Triangle implements Shape {
         String ln = System.lineSeparator();
         return    "   ^    " + ln
                 + " /   \\ " + ln
-                + "/_____\\";
+                + "/_____\\" + ln;
     }
 }
