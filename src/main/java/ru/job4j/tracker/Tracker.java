@@ -65,10 +65,4 @@ public class Tracker {
         }
         return Arrays.copyOf(rsl, j);
     }
-
-    public static void printItems(Item[] items) {
-        for (Item item : items) {
-            System.out.println(item.toString());
-        }
-    }
 }
