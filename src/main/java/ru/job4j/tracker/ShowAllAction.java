@@ -18,10 +18,10 @@ public class ShowAllAction implements UserAction {
         Item[] rsl = tracker.findAll();
         if (rsl.length > 0) {
             for (Item item : rsl) {
-                System.out.println(item.toString());
+                out.println(item.toString());
             }
         } else {
-            System.out.println("Items not found");
+            out.println("Items not found");
         }
         return true;
     }
