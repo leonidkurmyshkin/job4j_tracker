@@ -13,7 +13,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0", "Fix PC", "1"}
         );
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         UserAction[] actions = {
                 new CreateAction(out),
                 new ExitAction()
@@ -25,7 +25,7 @@ public class StartUITest {
     @Test
     public void whenReplaceItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         Item item = tracker.add(new Item("Fix PC"));
         String replacedName = "Wash the floor";
         Input in = new StubInput(new String[] {
@@ -45,7 +45,7 @@ public class StartUITest {
     @Test
     public void whenDeleteItem() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         Item item = tracker.add(new Item("Deleted item"));
         Input in = new StubInput(new String[] {
                 "0",
@@ -66,7 +66,7 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"0"}
         );
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         UserAction[] actions = {
                 new ExitAction()
         };
@@ -80,7 +80,7 @@ public class StartUITest {
     @Test
     public void whenShowAllAction() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         Item item1 = tracker.add(new Item("Fix PC"));
         Item item2 = tracker.add(new Item("Replace cartridge"));
         Input in = new StubInput(new String[] {"0", "1"});
@@ -104,7 +104,7 @@ public class StartUITest {
     @Test
     public void whenFindByNameAction() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         Item item1 = tracker.add(new Item("Fix PC"));
         Item item2 = tracker.add(new Item("Replace cartridge"));
         Input in = new StubInput(new String[] {
@@ -131,7 +131,7 @@ public class StartUITest {
     @Test
     public void whenFindByIdAction() {
         Output out = new StubOutput();
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         Item item1 = tracker.add(new Item("Fix PC"));
         Item item2 = tracker.add(new Item("Replace cartridge"));
         Input in = new StubInput(new String[] {
@@ -160,7 +160,7 @@ public class StartUITest {
         Output out = new StubOutput();
         Input in = new StubInput(
                 new String[] {"5", "0"});
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         UserAction[] actions = {
                 new ExitAction()
         };

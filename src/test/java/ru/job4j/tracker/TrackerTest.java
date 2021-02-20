@@ -8,7 +8,7 @@ import static org.junit.Assert.assertThat;
 public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         Item item = new Item();
         item.setName("test1");
         tracker.add(item);
@@ -18,7 +18,7 @@ public class TrackerTest {
 
     @Test
     public void whenFindByName() {
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         Item item1 = new Item("Переставить");
         Item item2 = new Item("Принести");
         Item item3 = new Item("Подать");
@@ -35,7 +35,7 @@ public class TrackerTest {
 
     @Test
     public void whenReplace() {
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         Item bug = new Item();
         bug.setName("Bug");
         tracker.add(bug);
@@ -48,7 +48,7 @@ public class TrackerTest {
 
     @Test
     public void whenDelete() {
-        Tracker tracker = new Tracker();
+        Tracker tracker = Tracker.getInstance();
         Item bug = new Item();
         bug.setName("Bug");
         tracker.add(bug);
