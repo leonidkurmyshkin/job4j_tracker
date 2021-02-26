@@ -1,13 +1,12 @@
 package ru.job4j.tracker;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tracker {
     private static Tracker instance = null;
-
-    private final Item[] items = new Item[100];
+    private final List<Item> items = new ArrayList<>();
     private int ids = 1;
-    private int size = 0;
 
     private Tracker() {
     }
@@ -21,32 +20,34 @@ public class Tracker {
 
     public Item add(Item item) {
         item.setId(ids++);
-        items[size++] = item;
+        items.add(item);
         return item;
     }
 
     private int indexOf(int id) {
         int rsl = -1;
-        for (int i = 0; i < size; i++) {
-            if (items[i].getId() == id) {
-                rsl = i;
+        int index = 0;
+        for (Item item : items) {
+            if (item.getId() == id) {
+                rsl = index;
                 break;
             }
+            index++;
         }
         return rsl;
     }
 
     public Item findById(int id) {
         int index = indexOf(id);
-        return index < 0 ? null : items[index];
+        return index == -1 ? null : items.get(index);
     }
 
     public boolean replace(int id, Item item) {
         int index = indexOf(id);
         boolean rsl = index != -1;
         if (rsl) {
-            items[index] = item;
-            items[index].setId(id);
+            item.setId(id);
+            items.set(index, item);
         }
         return rsl;
     }
@@ -55,26 +56,22 @@ public class Tracker {
         int index = indexOf(id);
         boolean rsl = index != -1;
         if (rsl) {
-            System.arraycopy(items, index + 1, items, index, size - 1 - index);
-            items[size - 1] = null;
-            size--;
+            items.remove(index);
         }
         return rsl;
     }
 
-    public Item[] findAll() {
-        return Arrays.copyOf(items, size);
+    public List<Item> findAll() {
+        return items;
     }
 
-    public Item[] findByName(String key) {
-        Item[] rsl = new Item[size];
-        int j = 0;
-        for (int i = 0; i < size; i++) {
-            if (items[i].getName().equals(key)) {
-                rsl[j] = items[i];
-                j++;
+    public List<Item> findByName(String key) {
+        List<Item> rsl = new ArrayList<>();
+        for (Item item : items) {
+            if (key.equals(item.getName())) {
+                rsl.add(item);
             }
         }
-        return Arrays.copyOf(rsl, j);
+        return rsl;
     }
 }

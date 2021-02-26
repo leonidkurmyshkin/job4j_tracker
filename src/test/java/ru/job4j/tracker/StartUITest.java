@@ -1,11 +1,14 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 
 public class StartUITest {
-    private final String ln = System.lineSeparator();
+    private static final String LN = System.lineSeparator();
 
     @Test
     public void whenCreateItem() {
@@ -14,12 +17,13 @@ public class StartUITest {
                 new String[] {"0", "Fix PC", "1"}
         );
         Tracker tracker = Tracker.getInstance();
-        UserAction[] actions = {
+        List<UserAction> actions = List.of(
                 new CreateAction(out),
                 new ExitAction()
-        };
+        );
         new StartUI(out).init(in, tracker, actions);
-        assertThat(tracker.findAll()[0].getName(), is("Fix PC"));
+        List<Item> allList = tracker.findAll();
+        assertThat(allList.get(0).getName(), is("Fix PC"));
     }
 
     @Test
@@ -34,10 +38,10 @@ public class StartUITest {
                 replacedName,
                 "1"
         });
-        UserAction[] actions = {
+        List<UserAction> actions = List.of(
                 new ReplaceAction(out),
                 new ExitAction()
-        };
+        );
         new StartUI(out).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId()).getName(), is(replacedName));
     }
@@ -52,10 +56,10 @@ public class StartUITest {
                 String.valueOf(item.getId()),
                 "1"
         });
-        UserAction[] actions = {
+        List<UserAction> actions = List.of(
                 new DeleteAction(out),
                 new ExitAction()
-        };
+        );
         new StartUI(out).init(in, tracker, actions);
         assertNull(tracker.findById(item.getId()));
     }
@@ -67,13 +71,13 @@ public class StartUITest {
                 new String[] {"0"}
         );
         Tracker tracker = Tracker.getInstance();
-        UserAction[] actions = {
+        List<UserAction> actions = List.of(
                 new ExitAction()
-        };
+        );
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + ln
-                + "0. === Exit ===" + ln
+                "Menu." + LN
+                + "0. === Exit ===" + LN
         ));
     }
 
@@ -84,20 +88,20 @@ public class StartUITest {
         Item item1 = tracker.add(new Item("Fix PC"));
         Item item2 = tracker.add(new Item("Replace cartridge"));
         Input in = new StubInput(new String[] {"0", "1"});
-        UserAction[] actions = {
+        List<UserAction> actions = List.of(
                 new ShowAllAction(out),
                 new ExitAction()
-        };
+        );
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + ln
-                + "0. === Show all Items ===" + ln
-                + "1. === Exit ===" + ln
-                + item1.toString() + ln
-                + item2.toString() + ln
-                + "Menu." + ln
-                + "0. === Show all Items ===" + ln
-                + "1. === Exit ===" + ln
+                "Menu." + LN
+                + "0. === Show all Items ===" + LN
+                + "1. === Exit ===" + LN
+                + item1.toString() + LN
+                + item2.toString() + LN
+                + "Menu." + LN
+                + "0. === Show all Items ===" + LN
+                + "1. === Exit ===" + LN
         ));
     }
 
@@ -112,19 +116,19 @@ public class StartUITest {
                 item2.getName(),
                 "1"
         });
-        UserAction[] actions = {
+        List<UserAction> actions = List.of(
                 new FindByNameAction(out),
                 new ExitAction()
-        };
+        );
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + ln
-                        + "0. === Find Items by Name ===" + ln
-                        + "1. === Exit ===" + ln
-                        + item2.toString() + ln
-                        + "Menu." + ln
-                        + "0. === Find Items by Name ===" + ln
-                        + "1. === Exit ===" + ln
+                "Menu." + LN
+                        + "0. === Find Items by Name ===" + LN
+                        + "1. === Exit ===" + LN
+                        + item2.toString() + LN
+                        + "Menu." + LN
+                        + "0. === Find Items by Name ===" + LN
+                        + "1. === Exit ===" + LN
         ));
     }
 
@@ -139,19 +143,19 @@ public class StartUITest {
                 String.valueOf(item1.getId()),
                 "1"
         });
-        UserAction[] actions = {
+        List<UserAction> actions = List.of(
                 new FindByIdAction(out),
                 new ExitAction()
-        };
+        );
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + ln
-                        + "0. === Find an Item by ID ===" + ln
-                        + "1. === Exit ===" + ln
-                        + item1.toString() + ln
-                        + "Menu." + ln
-                        + "0. === Find an Item by ID ===" + ln
-                        + "1. === Exit ===" + ln
+                "Menu." + LN
+                        + "0. === Find an Item by ID ===" + LN
+                        + "1. === Exit ===" + LN
+                        + item1.toString() + LN
+                        + "Menu." + LN
+                        + "0. === Find an Item by ID ===" + LN
+                        + "1. === Exit ===" + LN
         ));
     }
 
@@ -161,16 +165,16 @@ public class StartUITest {
         Input in = new StubInput(
                 new String[] {"5", "0"});
         Tracker tracker = Tracker.getInstance();
-        UserAction[] actions = {
+        List<UserAction> actions = List.of(
                 new ExitAction()
-        };
+        );
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
-                "Menu." + ln
-                + "0. === Exit ===" + ln
-                + "Wrong input, you can select: 0 .. 0" + ln
-                + "Menu." + ln
-                + "0. === Exit ===" + ln
+                "Menu." + LN
+                + "0. === Exit ===" + LN
+                + "Wrong input, you can select: 0 .. 0" + LN
+                + "Menu." + LN
+                + "0. === Exit ===" + LN
         ));
     }
 }

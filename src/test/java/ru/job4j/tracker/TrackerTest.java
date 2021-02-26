@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
 import org.junit.Test;
+
+import java.util.List;
+
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
@@ -27,9 +30,7 @@ public class TrackerTest {
         tracker.add(item2);
         tracker.add(item3);
         tracker.add(item4);
-        Item[] exp = new Item[2];
-        exp[0] = item1;
-        exp[1] = item4;
+        List<Item> exp = List.of(item1, item4);
         assertThat(tracker.findByName("Переставить"), is(exp));
     }
 
