@@ -18,7 +18,7 @@ public class ShowAllAction implements UserAction {
     @Override
     public boolean execute(Input input, Tracker tracker) {
         List<Item> rsl = tracker.findAll();
-        if (rsl != null) {
+        if (rsl.size() != 0) {
             for (Item item : rsl) {
                 out.println(item.toString());
             }
