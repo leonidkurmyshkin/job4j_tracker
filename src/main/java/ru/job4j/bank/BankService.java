@@ -14,12 +14,11 @@ public class BankService {
 
     public void addAccount(String passport, Account account) {
         User foundUser = findByPassport(passport);
-        if (foundUser == null) {
-            throw new IllegalArgumentException("Invalid passport number.");
-        }
-        List<Account> accounts = users.get(foundUser);
-        if (!accounts.contains(account)) {
-            accounts.add(account);
+        if (foundUser != null) {
+            List<Account> accounts = users.get(foundUser);
+            if (!accounts.contains(account)) {
+                accounts.add(account);
+            }
         }
     }
 
@@ -35,14 +34,17 @@ public class BankService {
     }
 
     public Account findByRequisite(String passport, String requisite) {
+        Account foundAccount = null;
         User foundUser = findByPassport(passport);
-        if (foundUser == null) {
-            throw new IllegalArgumentException("Invalid passport number.");
+        if (foundUser != null) {
+            for (Account tmpAccount : users.get(foundUser)) {
+                if (requisite.equals(tmpAccount.getRequisite())) {
+                    foundAccount = tmpAccount;
+                    break;
+                }
+            }
         }
-        List<Account> accounts = users.get(foundUser);
-        int index = accounts.indexOf(
-                new Account(requisite, 0.));
-        return index == -1 ? null : accounts.get(index);
+        return foundAccount;
     }
 
     public boolean transferMoney(String srcPassport, String srcRequisite,

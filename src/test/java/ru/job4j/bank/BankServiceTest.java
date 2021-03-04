@@ -15,7 +15,7 @@ public class BankServiceTest {
         assertThat(bank.findByPassport("3434"), is(user));
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void whenEnterInvalidPassport() {
         User user = new User("3434", "Petr Arsentev");
         BankService bank = new BankService();
