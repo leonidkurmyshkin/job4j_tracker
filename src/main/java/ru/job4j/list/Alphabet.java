@@ -5,7 +5,7 @@ import java.util.*;
 public class Alphabet {
     public static String reformat(String s) {
         List<String> chars = new ArrayList<>(Arrays.asList(s.split("")));
-        Collections.sort(chars, new Comparator<String>() {
+        chars.sort(new Comparator<>() {
             @Override
             public int compare(String o1, String o2) {
                 return o1.compareTo(o2);
