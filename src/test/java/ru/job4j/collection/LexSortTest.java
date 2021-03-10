@@ -21,22 +21,4 @@ public class LexSortTest {
         Arrays.sort(input, new LexSort());
         assertThat(input, is(out));
     }
-
-    @Test
-    public void sortDiffNumLength() {
-        String[] input = {
-                "1.10.",
-                "1.10.5.",
-                "1.2.",
-                "Task."
-        };
-        String[] out = {
-                "Task.",
-                "1.2.",
-                "1.10.",
-                "1.10.5."
-        };
-        Arrays.sort(input, new LexSort());
-        assertThat(input, is(out));
-    }
 }
