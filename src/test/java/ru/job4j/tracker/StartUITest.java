@@ -17,6 +17,7 @@ public class StartUITest {
                 new String[] {"0", "Fix PC", "1"}
         );
         Tracker tracker = Tracker.getInstance();
+        tracker.findAll().clear();
         List<UserAction> actions = List.of(
                 new CreateAction(out),
                 new ExitAction()
@@ -85,6 +86,7 @@ public class StartUITest {
     public void whenShowAllAction() {
         Output out = new StubOutput();
         Tracker tracker = Tracker.getInstance();
+        tracker.findAll().clear();
         Item item1 = tracker.add(new Item("Fix PC"));
         Item item2 = tracker.add(new Item("Replace cartridge"));
         Input in = new StubInput(new String[] {"0", "1"});
@@ -109,11 +111,13 @@ public class StartUITest {
     public void whenFindByNameAction() {
         Output out = new StubOutput();
         Tracker tracker = Tracker.getInstance();
+        tracker.findAll().clear();
         Item item1 = tracker.add(new Item("Fix PC"));
-        Item item2 = tracker.add(new Item("Replace cartridge"));
+        tracker.add(new Item("Replace cartridge"));
+        Item item3 = tracker.add(new Item("Fix PC"));
         Input in = new StubInput(new String[] {
                 "0",
-                item2.getName(),
+                item1.getName(),
                 "1"
         });
         List<UserAction> actions = List.of(
@@ -123,12 +127,13 @@ public class StartUITest {
         new StartUI(out).init(in, tracker, actions);
         assertThat(out.toString(), is(
                 "Menu." + LN
-                        + "0. === Find Items by Name ===" + LN
-                        + "1. === Exit ===" + LN
-                        + item2.toString() + LN
-                        + "Menu." + LN
-                        + "0. === Find Items by Name ===" + LN
-                        + "1. === Exit ===" + LN
+                + "0. === Find Items by Name ===" + LN
+                + "1. === Exit ===" + LN
+                + item1.toString() + LN
+                + item3.toString() + LN
+                + "Menu." + LN
+                + "0. === Find Items by Name ===" + LN
+                + "1. === Exit ===" + LN
         ));
     }
 
@@ -137,7 +142,7 @@ public class StartUITest {
         Output out = new StubOutput();
         Tracker tracker = Tracker.getInstance();
         Item item1 = tracker.add(new Item("Fix PC"));
-        Item item2 = tracker.add(new Item("Replace cartridge"));
+        tracker.add(new Item("Replace cartridge"));
         Input in = new StubInput(new String[] {
                 "0",
                 String.valueOf(item1.getId()),

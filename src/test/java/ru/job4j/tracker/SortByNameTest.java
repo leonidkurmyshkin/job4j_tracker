@@ -2,6 +2,7 @@ package ru.job4j.tracker;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.Matchers.is;
 
@@ -11,6 +12,7 @@ public class SortByNameTest {
     @Test
     public void whenAscItemsSort() {
         Tracker tracker = Tracker.getInstance();
+        tracker.findAll().clear();
         tracker.add(new  Item("Draw"));
         tracker.add(new Item("Check"));
         tracker.add(new Item("Replace"));
@@ -26,6 +28,7 @@ public class SortByNameTest {
     @Test
     public void whenDescItemsSort() {
         Tracker tracker = Tracker.getInstance();
+        tracker.findAll().clear();
         tracker.add(new  Item("Draw"));
         tracker.add(new Item("Check"));
         tracker.add(new Item("Replace"));
