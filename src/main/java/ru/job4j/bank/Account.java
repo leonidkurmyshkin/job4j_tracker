@@ -40,7 +40,7 @@ public class Account {
     }
 
     /**
-     * Счета равны, если равны их поля requisite.
+     * Счета равны, если равны их реквизиты.
      * @param o
      * @return
      */
@@ -57,7 +57,7 @@ public class Account {
     }
 
     /**
-     * Хэшкод вычисляется по значению поля requisite.
+     * Хэшкод вычисляется по реквизитам.
      * @return
      */
     @Override
