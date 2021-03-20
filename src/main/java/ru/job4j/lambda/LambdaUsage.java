@@ -1,5 +1,6 @@
 package ru.job4j.lambda;
 
+import java.util.Arrays;
 import java.util.Comparator;
 
 public class LambdaUsage {
@@ -9,5 +10,10 @@ public class LambdaUsage {
             return Integer.compare(right.length(), left.length());
         };
         cmpDescSize.compare("first", "second");
+        String[] names = {
+                "Ivan",
+                "Petr"
+        };
+        Arrays.sort(names, cmpDescSize);
     }
 }
