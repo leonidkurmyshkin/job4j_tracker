@@ -12,17 +12,17 @@ public class StudentsMapTest {
     @Test
     public void listToMap() {
         List<Student> students = List.of(
-                new Student(70, "Surname1"),
-                new Student(40, "Surname4"),
-                new Student(50, "Surname5"),
-                new Student(50, "Surname1"),
-                new Student(90, "Surname5")
+                new Student("Surname1", 70),
+                new Student("Surname4", 40),
+                new Student("Surname5", 50),
+                new Student("Surname1", 50),
+                new Student("Surname5", 90)
         );
         Map<String, Student> rsl = StudentsMap.listToMap(students);
         Map<String, Student> expected = Map.of(
-                "Surname1", new Student(70, "Surname1"),
-                "Surname4", new Student(40, "Surname4"),
-                "Surname5", new Student(90, "Surname5")
+                "Surname1", new Student("Surname1", 70),
+                "Surname4", new Student("Surname4", 40),
+                "Surname5", new Student("Surname5", 90)
         );
         assertThat(rsl, is(expected));
     }
