@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 public class PhoneDictionaryTest {
     @Test
     public void whenFindByName() {
-        PhoneDictionary phones = new PhoneDictionary();
+        var phones = new PhoneDictionary();
         phones.add(
                 new Person("Petr", "Arsentev", "534872", "Bryansk")
         );
@@ -21,11 +21,11 @@ public class PhoneDictionaryTest {
         phones.add(
                 new Person("Ivan", "Petrov", "534870", "Moskow")
         );
-        List<Person> expected = List.of(
+        var expected = List.of(
                 new Person("Petr", "Arsentev", "534872", "Bryansk"),
                 new Person("Ivan", "Petrov", "534872", "Bryansk")
         );
-        ArrayList<Person> persons = phones.find("Petr");
+        var persons = phones.find("Petr");
         assertThat(persons.get(0).getSurname(), is("Arsentev"));
         assertThat(persons.get(1).getSurname(), is("Petrov"));
     }
