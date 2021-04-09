@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Класс описывает модель банковской системы
  * @author Leonid Kurmyshkin
- * @version 1.0
+ * @version 1.1
  */
 public class BankService {
 
@@ -42,7 +42,7 @@ public class BankService {
     /**
      * Метод ищет пользователя по номеру его паспорта.
      * @param passport номер паспорта пользователя.
-     * @return возвращает найденного пользователя или null, если пользователя найти не удалось.
+     * @return возвращает Optional из найденного пользователя.
      */
     public Optional<User> findByPassport(String passport) {
         return users.keySet()
@@ -55,7 +55,7 @@ public class BankService {
      * Метод ищет счёт по номеру паспорта и реквизитам счёта
      * @param passport номер паспорта пользователя
      * @param requisite реквизиты счёта
-     * @return возвращает найденный счёт или null, если счёт не найден.
+     * @return возвращает Optional из найденного счёта.
      */
     public Optional<Account> findByRequisite(String passport, String requisite) {
         return findByPassport(passport)
